@@ -372,13 +372,15 @@ namespace Otumn.Bokya
             {
                 //choose if testing mother tongue or kana
                 int c = Random.Range(0, 2);
-                if (testedCard.MasteryScore >= 1f || testedCard.KanjiWord == testedCard.KanaWord) c = 1;
+                if (testedCard.MasteryScore >= 1f) c = 1;
+                if (testedCard.KanjiWord == testedCard.KanaWord) c = 0;
                 //display clue and kanji
                 switch (c)
                 {
                     case 0: // testing mother tongue
                         clueOneText.text = testedCard.KanaWord;
                         clueTwoText.text = "";
+                        if (testedCard.KanjiWord == testedCard.KanaWord) clueOneText.text = "";
                         answerTextKA.text = testedCard.MotherTongueWord;
                         expectedKAAnswer = testedCard.MotherTongueWord;
                         instructionText.text = "translation?";
